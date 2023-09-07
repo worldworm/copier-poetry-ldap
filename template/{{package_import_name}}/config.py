@@ -1,0 +1,19 @@
+""" Configuration and environment variables """
+from loguru import logger
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Config(BaseSettings):
+    """ Configuration class loading from dotenv file """
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+
+    DRY_RUN: bool = False
+    LDAP_URL: str
+    LDAP_USER: str
+    LDAP_PASSWORD: str
+
+
+config = Config()
+
+if config.DRY_RUN:
+    logger.opt(colors=True).info("<underline><green>dry run mode is active</green></underline>")
