@@ -1,0 +1,33 @@
+""" Test the ldap utils """
+import pytest
+
+from {{package_import_name}}.ldap import utils
+
+from .ldap_fixtures import ldap_connection  # pylint: disable=unused-import
+
+# pylint: disable=redefined-outer-name
+
+
+def test_get_group_members_none_found(ldap_connection):
+    """ Test if an exception is raised if no group is found """
+    with pytest.raises(LookupError) as excinfo:
+        utils.get_group_members(ldap_connection, "cn=groupNOTEXIST,ou=groups,dc=example,dc=com")
+    assert str(excinfo.value) == "A unique assignment was not possible for cn=groupNOTEXIST,ou=groups,dc=example,dc=com (0 results found)"
+
+
+def test_get_group_members_empty(ldap_connection):
+    """ Test if an empty list is returned if the group has no members """
+    result = utils.get_group_members(ldap_connection, "cn=group0,ou=groups,dc=example,dc=com")
+    assert len(result) == 0
+
+
+def test_get_group_members(ldap_connection):
+    """ Test if the members of a group are returned """
+    result = utils.get_group_members(ldap_connection, "cn=group3,ou=groups,dc=example,dc=com")
+    assert result == ["cn=user1,ou=users,dc=example,dc=com", "cn=user2,ou=users,dc=example,dc=com"]
+
+
+def test_get_group_members_recursive(ldap_connection):
+    """ Test if the members of a group are returned recursively """
+    result = utils.get_group_members(ldap_connection, "cn=group4,ou=groups,dc=example,dc=com")
+    assert result == ["cn=user1,ou=users,dc=example,dc=com", "cn=user3,ou=users,dc=example,dc=com"]
