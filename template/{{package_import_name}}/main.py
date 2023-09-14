@@ -1,6 +1,4 @@
 """ Main module """
-from loguru import logger
-
 from .ldap.connection import connection
 
 

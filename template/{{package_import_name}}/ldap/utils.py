@@ -3,7 +3,7 @@ from ldap3 import Connection
 from loguru import logger
 
 
-@logger.catch
+@logger.catch(reraise=True)
 def get_group_members(connection: Connection, group_dn: str) -> list[str]:
     """ Recursively get all members of a group """
     connection.search(search_base=group_dn, search_filter="(objectClass=group)", search_scope="BASE", attributes=["member"])
@@ -13,7 +13,7 @@ def get_group_members(connection: Connection, group_dn: str) -> list[str]:
 
     members = []
     for member in connection.entries[0].member.values:
-        if "OU=Users" in member:
+        if "ou=users" in member.lower():
             members.append(member)
         else:
             members.extend(get_group_members(connection, member))
