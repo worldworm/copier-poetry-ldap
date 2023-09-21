@@ -1,14 +1,10 @@
-""" Main module """
-from .ldap.connection import connection
+"""Main module."""
+from .ldap.connection import cleanup, connection
 
 
 def main():
-    """ Main function """
+    """Main function."""
     try:
         pass
     finally:
-        connection.unbind()
-
-
-if __name__ == "__main__":
-    main()
+        cleanup()

@@ -1,11 +1,14 @@
-""" LDAP fixtures for testing """
+"""Global pytest fixtures."""
 import pytest
 from ldap3 import MOCK_SYNC, Connection, Server
+from loguru import logger
+
+# pylint: disable=redefined-outer-name
 
 
-@pytest.fixture()
+@pytest.fixture
 def ldap_connection() -> Connection:
-    """ Returns a connection to a fake LDAP server with some entries for testing """
+    """Returns a connection to a fake LDAP server with some entries for testing."""
     connection = Connection(Server("fake_server"), user="cn=user0,ou=users,dc=example,dc=com", password="test", client_strategy=MOCK_SYNC)
     # Users
     connection.strategy.add_entry("cn=user0,ou=users,dc=example,dc=com", {"objectClass": "user", "userPassword": "test"})
@@ -25,4 +28,19 @@ def ldap_connection() -> Connection:
                                   "cn=group1,ou=groups,dc=example,dc=com", "cn=user3,ou=users,dc=example,dc=com"]})
 
     connection.bind()
+    logger.debug("mock ldap connection established")
     return connection
+
+
+@pytest.fixture()
+def mock_cleanup():
+    """Overwrite connection cleanup."""
+    def _mock_cleanup():
+        pass
+    return _mock_cleanup
+
+
+@pytest.fixture(autouse=True)
+def _mock_ldap_connection(monkeypatch, ldap_connection):
+    """Mocks the ldap connection."""
+    monkeypatch.setattr("{{package_import_name}}.ldap.connection.connection", ldap_connection)

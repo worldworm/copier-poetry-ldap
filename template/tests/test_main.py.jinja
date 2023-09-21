@@ -1,0 +1,11 @@
+"""Test main."""
+from {{package_import_name}} import main
+
+# pylint: disable=redefined-outer-name
+
+
+def test_main(monkeypatch, ldap_connection, mock_cleanup):
+    """Test main function."""
+    monkeypatch.setattr(main, "connection", ldap_connection)
+    monkeypatch.setattr(main, "cleanup", mock_cleanup)
+    main.main()

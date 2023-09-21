@@ -1,11 +1,11 @@
-""" ldap helper functions """
+"""LDAP helper functions."""
 from ldap3 import Connection
 from loguru import logger
 
 
 @logger.catch(reraise=True)
 def get_group_members(connection: Connection, group_dn: str) -> list[str]:
-    """ Recursively get all members of a group """
+    """Recursively get all members of a group."""
     connection.search(search_base=group_dn, search_filter="(objectClass=group)", search_scope="BASE", attributes=["member"])
 
     if len(connection.entries) != 1:

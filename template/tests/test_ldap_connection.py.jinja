@@ -1,0 +1,9 @@
+"""Test the LDAP connection."""
+from {{package_import_name}}.ldap import connection
+
+
+def test_cleanup():
+    """Test LDAP connection cleanup."""
+    assert connection.connection.bound is True
+    connection.cleanup()
+    assert connection.connection.bound is False
