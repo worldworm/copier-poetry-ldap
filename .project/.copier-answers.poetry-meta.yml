@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier
-_commit: 1770e31
+_commit: 591bc2a
 _src_path: https://github.com/worldworm/copier-poetry-meta.git
 template_suffix: ldap
 use_subdir: false
