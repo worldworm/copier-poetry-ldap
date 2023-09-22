@@ -1,4 +1,6 @@
 """Configuration and environment variables."""
+from typing import Union
+
 from loguru import logger
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -8,7 +10,7 @@ class Config(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     DRY_RUN: bool = False
-    LDAP_URL: str
+    LDAP_URL: Union[str, list[str]]
     LDAP_USER: str
     LDAP_PASSWORD: str
 
