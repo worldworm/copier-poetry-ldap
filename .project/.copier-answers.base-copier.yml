@@ -1,7 +1,8 @@
 # Changes here will be overwritten by Copier
-_commit: v1.1.0
+_commit: v1.2.0
 _src_path: https://github.com/worldworm/copier-base-copier.git
 answersfile_suffix: poetry-ldap
+copier_version: '9'
 copyright_license: MIT
 copyright_year_start: 2023
 copyright_year_today: 2023
@@ -18,4 +19,3 @@ repository_provider: GitHub
 repository_url: https://github.com/worldworm/copier-poetry-ldap
 repository_username: worldworm
 warning_early_dev: false
-
