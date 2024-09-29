@@ -14,17 +14,17 @@
 
 
 ## Features
-- [LDAP3](https://github.com/cannatag/ldap3) (pool) connection setup
-- LDAP helper utilities
-- Settings management using [pydantic-settings](https://github.com/pydantic/pydantic-settings)
-- Logging powered by [loguru](https://github.com/Delgan/loguru)
-- Predefined [pytest](https://github.com/pytest-dev/pytest/) testing with LDAP3 mock connection
-- [Poetry](https://github.com/python-poetry/poetry) setup with a pre-defined pyproject.toml
-- Continuous integration (CI) pipelines for Github Actions and GitLab CI/CD
-- Docker support with build and publish pipelines
-- [pre-commit](https://github.com/pre-commit/pre-commit) hooks
-- [pylint](https://github.com/pylint-dev/pylint) code linter
-- [VSCode](https://github.com/microsoft/vscode) configuration
+- 🌐 [LDAP3](https://github.com/cannatag/ldap3) (pool) connection setup
+- 🛠 LDAP helper utilities
+- ⚙️ Settings management using [pydantic-settings](https://github.com/pydantic/pydantic-settings)
+- 📚 Logging powered by [loguru](https://github.com/Delgan/loguru)
+- 🧪 Predefined [pytest](https://github.com/pytest-dev/pytest/) testing with LDAP3 mock connection
+- 📦 [Poetry](https://github.com/python-poetry/poetry) setup with a pre-defined pyproject.toml
+- 🔄 Continuous integration (CI) pipelines for Github Actions and GitLab CI/CD
+- 🐳 Docker support with build and publish pipelines
+- 🔗 [pre-commit](https://github.com/pre-commit/pre-commit) hooks
+- 📝 [pylint](https://github.com/pylint-dev/pylint) code linter
+- 💻 [VSCode](https://github.com/microsoft/vscode) configuration
 
 
 ## Requirements
